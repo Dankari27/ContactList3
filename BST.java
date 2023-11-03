@@ -5,12 +5,24 @@ public class BST<T extends Comparable<T>> {
 	private Tree<T> root;
 	private String filename;
 
+	/**
+	 * Constructs a binary search tree for managing contacts, using a specified
+	 * file.
+	 *
+	 * @param filename The name of the file where contacts are stored and loaded.
+	 */
 	public BST(String filename) {
 		root = null;
 		this.filename = filename;
 		loadContactsFromFile();
 	}
 
+	/**
+	 * Searches for a contact in the tree by its name.
+	 *
+	 * @param target The name of the contact to search for.
+	 * @return The contact if found, or null if not found.
+	 */
 	public T search(T target) {
 		if (root == null) {
 			return null;
@@ -34,6 +46,11 @@ public class BST<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * Adds a new contact to the binary search tree.
+	 *
+	 * @param value The contact to be added.
+	 */
 	public void insert(T value) {
 		if (root == null) {
 			root = new Tree<>(value);
@@ -57,6 +74,9 @@ public class BST<T extends Comparable<T>> {
 		return node;
 	}
 
+	/**
+	 * Prints the contacts in ascending order.
+	 */
 	public void print() {
 		printInOrder(root);
 	}
@@ -69,6 +89,11 @@ public class BST<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * Retrieves all contacts in the tree.
+	 *
+	 * @return An ArrayList containing all contacts in the tree.
+	 */
 	public ArrayList<T> getAllContacts() {
 		ArrayList<T> allContacts = new ArrayList<>();
 		collectContactsInOrder(root, allContacts);
@@ -104,6 +129,9 @@ public class BST<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * Saves the contacts to the specified file.
+	 */
 	public void saveContactsToFile() {
 		try {
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
@@ -123,6 +151,12 @@ public class BST<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * Removes a contact from the tree by its name.
+	 *
+	 * @param target The name of the contact to remove.
+	 * @return The removed contact if found, or null if not found.
+	 */
 	public T remove(T target) {
 		Tree<T> newRoot = removeContact(root, target);
 
