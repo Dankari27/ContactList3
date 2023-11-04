@@ -145,7 +145,14 @@ public class BST<T extends Comparable<T>> {
 	private void saveContactsInOrder(Tree<T> node, BufferedWriter bufferedWriter) throws IOException {
 		if (node != null) {
 			saveContactsInOrder(node.left, bufferedWriter);
-			bufferedWriter.write(((Contact) node.data).getName() + "," + ((Contact) node.data).getPhoneNumber());
+
+			if (node.data instanceof Contact) {
+				Contact contact = (Contact) node.data;
+				bufferedWriter.write(contact.getName() + "," + contact.getPhoneNumber());
+			} else if (node.data instanceof Integer) {
+				bufferedWriter.write(node.data.toString());
+			}
+
 			bufferedWriter.newLine();
 			saveContactsInOrder(node.right, bufferedWriter);
 		}
