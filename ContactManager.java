@@ -81,6 +81,9 @@ public class ContactManager {
         // Printing the integers in ascending order
         System.out.println("Generic Test-Integers in ascending order:");
         intBST.print();
+
+        // Save the updated integers to the "integers.txt" file
+        intBST.saveContactsToFile();
     }
 
     private static void addContact(Scanner scanner) {
